@@ -6,4 +6,4 @@ class TransactionForm(forms.ModelForm):
 
     class Meta:
         model = Transaction
-        fields = ('receiver_accno.account_no','amount', 'transaction_password')
+        fields = ('receiver_accno', 'amount', 'transaction_password')

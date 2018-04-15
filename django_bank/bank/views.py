@@ -28,7 +28,7 @@ def transfer(request):
     if request.method=="POST":
         f = TransactionForm(request.POST)
         if f.is_valid():
-            recaccno = f.cleaned_data['receiver_accno.account_no']
+            recaccno = f.cleaned_data['receiver_accno']
             transpass = f.cleaned_data['transaction_password']
             amt = f.cleaned_data['amount']
             curruser = User.objects.get(username=request.user.username)
@@ -39,8 +39,8 @@ def transfer(request):
                 if receiver is not None:
                      if transpass == transactionpass:
                          receiver.balance = receiver.balance + amt
-                         curruser.profile.balance = curruser.profile.balance - amt
                          receiver.save()
+                         curruser.profile.balance = curruser.profile.balance - amt
                          curruser.save()
                          f.save()
                          iid = (Transaction.objects.all().aggregate(Max('id')))['id__max']
@@ -60,3 +60,10 @@ def transfer(request):
 def logout(request):
     auth.logout(request)
     return render_to_response('logout.html')
+
+def transactions(request):
+    args = {}
+    args['transactions'] = Transaction.objects.all()
+    curruser = request.user.username
+    args['user'] = User.objects.get(username=curruser)
+    return render(request, 'transactions.html', args)

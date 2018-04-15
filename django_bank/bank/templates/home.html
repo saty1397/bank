@@ -8,5 +8,11 @@
 </ul>
 {% endblock %}
 {% block content %}
+<br><br><br>
 Hi ! {{user.get_username}}, You are logged in.
+<br><br><br>
+Your Account No is {{user.profile.account_no}}.
+<br><br><br>
+Your Current Balance is {{user.profile.balance}}.
+<br><br><br>
 {% endblock %}

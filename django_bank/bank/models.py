@@ -25,7 +25,9 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 class Transaction(models.Model):
-    receiver_accno = models.ForeignKey(Profile, to_field='account_no')
+    receiver_accno = models.IntegerField()
     sender_accno = models.IntegerField(default=1000)
     amount = models.IntegerField()
     transaction_password = models.CharField(max_length=30)
+    #def __str__(self):
+    #    return self.receiver_accno.account_no

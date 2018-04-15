@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block sidebar %}
+<ul>
+  <li><a href="/bank/home">Home</a></li>
+  <li><a href="/bank/transactions">Transaction List</a></li>
+  <li><a href="/bank/transfer">Transfer</a></li>
+  <li><a href="/bank/logout">Logout</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+  <h2>Transactions</h2>
+<p>Sender_Account_No &nbsp;&nbsp;&nbsp; Receiver_Account_No &nbsp;&nbsp;&nbsp; Amount</p>
+{% for transaction in transactions %}
+
+{% if transaction.receiver_accno == user.profile.account_no %}
+<div>
+<p>{{transaction.sender_accno}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{transaction.receiver_accno}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	{{transaction.amount}}</p>
+</div>
+{% endif %}
+{% if transaction.sender_accno == user.profile.account_no %}
+<div>
+<p>{{transaction.sender_accno}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{transaction.receiver_accno}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{transaction.amount}} </p>
+</div>
+{% endif %}
+
+{% endfor %}
+{% endblock %}
