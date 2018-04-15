@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block sidebar %}
+<ul>
+  <li><a href="/bank/home">Home</a></li>
+  <li><a href="/bank/transactions">Transaction List</a></li>
+  <li><a href="/bank/transfer">Transfer</a></li>
+  <li><a href="/bank/logout">Logout</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+Hi ! {{user.get_username}}, You are logged in.
+{% endblock %}

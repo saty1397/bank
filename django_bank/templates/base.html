@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{%block title %}My Base Template{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static "assets/css/default.css" %}">
+  <script src="{% static "assets/js/jquery-2.0.0.min.js"}"></script>
+  <script src="{% static "assets/js/ajax.js"}"></script>
+</head>
+<body>
+  <div id="page">
+    <div id="sidebar">
+      {% block sidebar %}
+      <ul>
+        <li><a href="/bank/home">Home</a></li>
+	<li><a href="/bank/transactions">Transaction List</a></li>
+	<li><a href="/bank/transfer">Transfer</a></li>
+	<li><a href="/bank/statement">Statement</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+      {% endblock %}
+  </div>
+  <div id="content">
+    {% block content %}This is the content area{% endblock %}
+    <img src="{% static "assets/images/python-logo.png" %}"/>
+  </div>
+</div>
+</body>
+</html>
