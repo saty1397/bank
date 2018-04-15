@@ -60,3 +60,6 @@ def invalid_login(request):
 def logout(request):
     auth.logout(request)
     return render_to_response('logout.html')
+
+def initial(request):
+    return render_to_response('initial.html')
